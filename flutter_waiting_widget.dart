@@ -61,27 +61,27 @@ class _ConnectingAnimation extends StatelessWidget {
         direction: Axis.horizontal,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          AnimatedCircle(
+          _AnimatedCircle(
             size: size,
             circleColor: circleColor,
             delay: const Duration(milliseconds: 0),
           ),
-          AnimatedCircle(
+          _AnimatedCircle(
             size: size,
             circleColor: circleColor,
             delay: const Duration(milliseconds: 150),
           ),
-          AnimatedCircle(
+          _AnimatedCircle(
             size: size,
             circleColor: circleColor,
             delay: const Duration(milliseconds: 300),
           ),
-          AnimatedCircle(
+          _AnimatedCircle(
             size: size,
             circleColor: circleColor,
             delay: const Duration(milliseconds: 450),
           ),
-          AnimatedCircle(
+          _AnimatedCircle(
             size: size,
             circleColor: circleColor,
             delay: const Duration(milliseconds: 600),
@@ -90,21 +90,20 @@ class _ConnectingAnimation extends StatelessWidget {
   }
 }
 
-class AnimatedCircle extends StatefulWidget {
+class _AnimatedCircle extends StatefulWidget {
   final double size;
   final Duration delay;
   final Color circleColor;
-  const AnimatedCircle(
+  const _AnimatedCircle(
       {required this.size,
       required this.delay,
-      required this.circleColor,
-      super.key});
+      required this.circleColor});
 
   @override
   State<StatefulWidget> createState() => _AnimatedCircleState();
 }
 
-class _AnimatedCircleState extends State<AnimatedCircle>
+class _AnimatedCircleState extends State<_AnimatedCircle>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   @override
