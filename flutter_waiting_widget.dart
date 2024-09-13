@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class Waiting extends StatelessWidget {
@@ -9,6 +11,7 @@ class Waiting extends StatelessWidget {
   final String text;
   final double textSize;
   final Color circleColor;
+
   const Waiting(
       {required this.disable,
       required this.width,
@@ -52,6 +55,7 @@ class Waiting extends StatelessWidget {
 
 class _ConnectingAnimation extends StatelessWidget {
   final Color circleColor;
+
   const _ConnectingAnimation({required this.circleColor});
 
   @override
@@ -94,10 +98,9 @@ class _AnimatedCircle extends StatefulWidget {
   final double size;
   final Duration delay;
   final Color circleColor;
+
   const _AnimatedCircle(
-      {required this.size,
-      required this.delay,
-      required this.circleColor});
+      {required this.size, required this.delay, required this.circleColor});
 
   @override
   State<StatefulWidget> createState() => _AnimatedCircleState();
@@ -106,19 +109,22 @@ class _AnimatedCircle extends StatefulWidget {
 class _AnimatedCircleState extends State<_AnimatedCircle>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
+  late Timer delayHandle;
+
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 500));
 
-    Future.delayed(widget.delay, () {
+    delayHandle = Timer(widget.delay, () {
       _animationController.repeat(reverse: true);
     });
   }
 
   @override
   void dispose() {
+    delayHandle.cancel();
     _animationController.dispose();
     super.dispose();
   }
